@@ -3,6 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+// Add these to allow Server Side Sessions to store States in
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+
+
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -10,6 +18,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ShopContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("BikeShopCS")));
 
 var app = builder.Build();
+
+
+
+
+// Enables the Sessions on the Server
+app.UseSession();
+
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -1,0 +1,62 @@
+﻿
+@model ShoppingCartViewModel
+
+
+
+
+<h1>Shopping Cart</h1>
+
+
+<h2 class="text-success bg-info">@(ViewBag.CartMessage)</h2>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th></th>
+        </tr>
+    </thead>
+
+        <tbody>
+            @foreach (var item in Model.CartItems)
+            {
+                <tr>
+                    <td>@item.Bicycle.Brand</td>
+                    <td>@item.Bicycle.Model</td>
+                    <td>@item.Bicycle.Price</td>
+                    <td>@item.Quantity</td>
+                    <td>@((item.Bicycle.Price * item.Quantity)?.ToString("C"))</td>
+
+                    <td>
+                        <input type="hidden" value="@item.Bicycle.Id" />
+                        <a asp-controller="ShoppingCart" asp-action="RemoveItem" asp-route-id="@item.Bicycle.Id" class="btn btn-danger">Remove</a>
+                    </td>
+                </tr>
+
+            }
+
+
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Total:</th>
+            <th>@Model.TotalPrice?.ToString("C")</th>
+            <th></th>
+        </tr>
+
+
+        </tbody>
+
+
+</table>
+
+
+
+    <a class="btn btn-success" asp-controller="ShoppingCart" asp-action="PurchaseItems">Purchase</a>

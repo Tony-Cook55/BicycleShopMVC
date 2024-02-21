@@ -10,22 +10,28 @@ namespace MyShop.Models
 
         public DbSet<Bicycle> Bicycles { get; set; }
 
+
+        public DbSet<Purchase> Purchase { get; set; }
+
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Bicycle>().HasData(
-              new Bicycle
-              {
-                  Id = 1,
-                  Brand = "Trek",
-                  Model = "FX 1",
-                  Year = 2022,
-                  Type = "Hybrid",
-                  Price = 450.00m,
-                  Color = "Black",
-                  ImageFileName = "trek-fx1-black.jpg"
-              },
+                new Bicycle
+                {
+                Id = 1,
+                Brand = "Trek",
+                Model = "FX 1",
+                Year = 2022,
+                Type = "Hybrid",
+                Price = 450.00m,
+                Color = "Black",
+                ImageFileName = "trek-fx1-black.jpg"
+                },
                 new Bicycle
                 {
                     Id = 2,
@@ -70,7 +76,7 @@ namespace MyShop.Models
                     Color = "Green",
                     ImageFileName = "trek-marlin-green.jpg"
                 }
-             );
+            );
         }
     }
 }
